@@ -18,20 +18,32 @@ const inputComponent = {
       this.input = '';
     }
   }
-
 }
+
+const noteCountComponent = {
+  template: `<div class="note count">Всего заметок: <strong>{{ noteCount }}</strong></div>`,
+
+  props: ['noteCount'],
+};
 
 new Vue({
   el: '#app',
 
   components: {
-    'input-component': inputComponent
+    'input-component': inputComponent,
+    'note-count-component': noteCountComponent
   },
 
   data: {
     notes: [],
     timestamps: [],
     placeholder: 'Название заметки'
+  },
+
+  computed: {
+    noteCount() {
+      return this.notes.length;
+    }
   },
 
   methods: {
