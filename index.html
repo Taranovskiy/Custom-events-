@@ -1,31 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.css"
+    />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" href="public/styles.css" />
+    <title>Custom Events</title>
+  </head>
 
-<head>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.css">
-  <link rel="stylesheet" href="../public/styles.css" />
-  <title>Custom Events</title>
-</head>
-
-<body>
-  <div id="app">
-    <div class="notes-section">
-      <div class="columns">
-        <div class="column has-text-centered">
-          <strong>Notes</strong>
+  <body>
+    <div id="app">
+      <div class="notes-section">
+        <div class="columns">
+          <div class="column has-text-centered">
+            <strong>Notes</strong>
+            <div class="notes" v-for="(note, index) in notes" :key="index">{{note}}</div>
+          </div>
+          <div class="column has-text-centered">
+            <strong>Timestamp</strong>
+            <div class="timestamps" v-for="(timestamp, index) in timestamps" :key="index">{{timestamp}}</div>
+          </div>
         </div>
-        <div class="column has-text-centered">
-          <strong>Timestamp</strong>
-        </div>
+        <input-component :placeholder="placeholder" @add-note="addNote"></input-component>
       </div>
-      <input-component></input-component>
     </div>
-  </div>
 
-  <script src="https://unpkg.com/vue"></script>
-  <script src="./main.js"></script>
-</body>
-
+    <script src="https://unpkg.com/vue"></script>
+    <script src="./main.js"></script>
+  </body>
 </html>
