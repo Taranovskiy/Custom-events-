@@ -23,7 +23,7 @@
             <div class="timestamps" v-for="(timestamp, index) in timestamps" :key="index">{{timestamp}}</div>
           </div>
         </div>
-        <input-component :placeholder="placeholder" @add-note="addNote"></input-component>
+        <input-component :placeholder="placeholder"></input-component>
         <note-count-component :note-count="noteCount"></note-count-component>
       </div>
     </div>
