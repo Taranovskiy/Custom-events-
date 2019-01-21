@@ -1,5 +1,5 @@
-const eventBus = new Vue();
-window.eventBus = eventBus;
+const EventBus = new Vue();
+window.EventBus = EventBus;
 
 const inputComponent = {
   template: `<input class="input is-small" type="text" :placeholder="placeholder" v-model="input" @keyup.enter="handleKeyUp"/>`,
@@ -14,7 +14,7 @@ const inputComponent = {
 
   methods: {
     handleKeyUp() {
-      eventBus.$emit('add-note', {
+      EventBus.$emit('add-note', {
         note: this.input,
         timestamp: new Date().toLocaleString()
       });
@@ -26,7 +26,15 @@ const inputComponent = {
 const noteCountComponent = {
   template: `<div class="note count">Всего заметок: <strong>{{ noteCount }}</strong></div>`,
 
-  props: ['noteCount'],
+  data() {
+    return {
+      noteCount: 0
+    }
+  },
+
+  created() {
+    EventBus.$on('add-note', evt => this.noteCount++);
+  }
 };
 
 new Vue({
@@ -44,7 +52,7 @@ new Vue({
   },
 
   created() {
-    eventBus.$on('add-note', evt => {
+    EventBus.$on('add-note', evt => {
       this.addNote(evt);
     })
   },
